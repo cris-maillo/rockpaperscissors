@@ -1,6 +1,9 @@
 let array = ["rock", "paper", "scissors"];
 let playerSelection;
 let computerSelection;
+let parentElement = document.getElementById('selections');
+let theFirstChild = parentElement.firstChild;
+let newElement = document.createElement("p");
 
 window.onload=function(){
     const buttons = document.querySelectorAll('#selections > button');
@@ -15,17 +18,14 @@ window.onload=function(){
 
 function playRound(playerSelection, computerSelection) {
     if ((playerSelection == "rock" && computerSelection =="scissors") || (playerSelection == "paper" && computerSelection =="rock") || (playerSelection == "scissors" && computerSelection =="paper")){
+        newElement.textContent = "you win " + playerSelection + "! beats " + computerSelection;
         console.log("you win " + playerSelection + " beats " + computerSelection);
-        return "winner";
     } else if (playerSelection === computerSelection){
+        newElement.textContent = "it is a tie";
         console.log("it is a tie");
-        return "tie";
     }else{
+        newElement.textContent = "you lose! :( " + computerSelection + " beats " + playerSelection;
         console.log("you lose! " + computerSelection + " beats " + playerSelection);
-        return "loser";
     }
+    parentElement.insertBefore(newElement, theFirstChild);
   }
-
-reset.addEventListener('click', function () {
-    location.reload();
-});
